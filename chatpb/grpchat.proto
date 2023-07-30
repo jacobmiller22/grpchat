@@ -1,0 +1,17 @@
+syntax ="proto3";
+
+package proto;
+
+option go_package = "github.com/jacobmiller22/grpchat/chatpb";
+
+import "google/protobuf/timestamp.proto";
+
+message ChatMessage {
+   string text = 1;
+   google.protobuf.Timestamp tmstmp = 2;
+   string from = 3;
+}
+
+service ChatMessageService {
+    rpc StreamChatMessage (stream ChatMessage) returns (stream ChatMessage) {};
+};
